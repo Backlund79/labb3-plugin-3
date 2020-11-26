@@ -51,9 +51,6 @@ add_action('init', 'create_new_form');
 class Solid
 {
     public $content = '';
-    // public $name = $_POST['name'];
-    // public $email = $_POST['email'];
-    // public $message = $_POST['message'];
     
     public function set_solid_form_func($content)
     {
@@ -65,3 +62,42 @@ class Solid
         return $this->content;
     }
 }
+function submit_form_to_post_submission()
+{
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && !empty($_POST['action'])) {
+
+    // Do some minor form validation to make sure there is content
+        if (isset($_POST['solid-name'])) {
+            $solid_name =  sanitize_text_field($_POST['solid-name']);
+        } else {
+            echo 'Please enter a title';
+        }
+        if (isset($_POST['solid-email'])) {
+            $solid_email = sanitize_email($_POST['solid-email']);
+        } else {
+            echo 'Please enter e-mail';
+        }
+        if (isset($_POST['solid-message'])) {
+            $solid_message = sanitize_textarea_field($_POST['solid-message']);
+        } else {
+            echo 'Please enter a message';
+        }
+
+
+        $new_submission = array(
+        'post_title'    => $solid_name,
+        'post_status'   => 'publish',
+        'post_type'     => 'submissions'
+    );
+    
+        $submission_id = wp_insert_post($new_submission);
+
+        update_post_meta($submission_id, 'user_name', $solid_name);
+        update_post_meta($submission_id, 'user_email', $solid_email);
+        update_post_meta($submission_id, 'user_message', $solid_message);
+    }
+    wp_redirect(get_permalink(find_thank_you_page()));
+    die;
+}
+add_action('wp_ajax_user_submission', 'submit_form_to_post_submission');
+add_action('wp_ajax_nopriv_user_submission', 'submit_form_to_post_submission');

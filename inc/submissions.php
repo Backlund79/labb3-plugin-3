@@ -1,8 +1,6 @@
 <?php
 /**
  * Register a custom post type called "Submissions".
- *
- * @see get_post_type_labels() for label keys.
  */
 function post_submissions()
 {
@@ -21,8 +19,6 @@ function post_submissions()
         'parent_item_colon'     => __('Parent submissions:', 'textdomain'),
         'not_found'             => __('No submissions found.', 'textdomain'),
         'not_found_in_trash'    => __('No submissions found in Trash.', 'textdomain'),
-        
-        
         'archives'              => _x('Submission archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain'),
         'insert_into_item'      => _x('Insert into submissions', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain'),
         'uploaded_to_this_item' => _x('Uploaded to this submissions', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain'),
@@ -38,12 +34,12 @@ function post_submissions()
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'book' ),
+        'rewrite'            => array( 'slug' => 'submission' ),
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
         'menu_position'      => null,
-        'supports'           => array( 'title', 'editor', 'author', 'excerpt', 'comments' ),
+        'supports'           => array( 'title'),
     );
  
     register_post_type('submissions', $args);
