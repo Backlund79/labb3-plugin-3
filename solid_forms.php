@@ -3,8 +3,8 @@
 * Plugin Name: Solid forms
 * Author: Emil
 */
-
-
+ require 'acf-field-data.php';
+ require 'inc/submissions.php';
 //function to generate thank you page.
 
 function generate_thank_you()
@@ -38,7 +38,8 @@ function delete_thank_you_page()
 }
 register_deactivation_hook(__FILE__, 'delete_thank_you_page');
 
-// get_permalink(find_thank_you_page());
+
+//Generate shortcode form
 
 function create_new_form()
 {

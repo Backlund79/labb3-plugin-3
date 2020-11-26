@@ -1,5 +1,6 @@
 <?php
 return'
+<h2> Contact us </h2>
 <form action="'. get_permalink(find_thank_you_page()) . '">
   <input type="hidden" name="action" value="submit">
   Your name:<br>
