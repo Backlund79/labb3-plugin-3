@@ -1,10 +1,13 @@
-<form action="" method="POST" enctype="multipart/form-data">
+<?php
+return'
+<form action="'. get_permalink(find_thank_you_page()) . '">
   <input type="hidden" name="action" value="submit">
   Your name:<br>
-  <input name="name" type="text" value="" size="30" /><br>
+  <input name="your-name" type="text" value="" size="30" /><br>
   Your email:<br>
-  <input name="email" type="text" value="" size="30" /><br>
+  <input name="your-email" type="text" value="" size="30" /><br>
   Your message:<br>
-  <textarea name="message" rows="7" cols="30"></textarea><br>
-  <input type="submit" value="Send email" />
+  <textarea name="-your-message" rows="7" cols="30"></textarea><br>
+  <input type="submit" value="submit" />
 </form>
+';
